@@ -1,3 +1,4 @@
 export function greet(name) {
-  return `Hello, ${name}!`;
+  // Mainline version: matches product copy (conflicts with personalize-greeting)
+  return `Hi, ${name} — welcome to the workshop!`;
 }
