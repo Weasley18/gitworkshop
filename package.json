@@ -1,0 +1,10 @@
+{
+  "name": "git-workshop-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small demo app for a Git and GitHub workshop",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
