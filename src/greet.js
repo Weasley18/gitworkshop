@@ -1,4 +1,4 @@
 export function greet(name) {
-  // Branch version: more formal than main's final wording
-  return `Greetings, ${name}! Great to have you.`;
+  // Mainline version: matches product copy (conflicts with personalize-greeting)
+  return `Hi, ${name} — welcome to the workshop!`;
 }
