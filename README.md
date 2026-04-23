@@ -17,11 +17,28 @@ npm start
 | `feature/personalize-greeting` | Resolving a merge conflict | `git switch main` then `git merge feature/personalize-greeting` (then fix `src/greet.js`) |
 | `experimental/orphan-rewrite` | “Unrelated histories” (merge refused) | `git switch main` then `git merge experimental/orphan-rewrite` |
 
-## Suggested demo order
+## Suggested demo order (commands)
 
-1. **Clean merge** — merge `feature/welcome-tweaks` into `main` (or show already merged state and replay from a backup clone).
-2. **Conflict** — merge `feature/personalize-greeting`, open conflict markers in `src/greet.js`, resolve, `git add`, `git commit`. Optional: `git merge --abort` to undo.
-3. **Unrelated histories** — attempt merge of `experimental/orphan-rewrite`; read the error. Optionally discuss `--allow-unrelated-histories` as an advanced escape hatch (not the default for good reason).
+1. **Clean merge** — `main` already includes the merge of `feature/welcome-tweaks` in this repo. To replay from a fresh clone of an older `main`, you would: `git switch main` then `git merge feature/welcome-tweaks` (expect a fast-forward or a clean merge with no conflict markers).
+
+2. **Conflict** — on `main`:
+   ```bash
+   git switch main
+   git merge feature/personalize-greeting
+   ```
+   Open `src/greet.js`, remove conflict markers, keep the line you want (or combine both), then:
+   ```bash
+   git add src/greet.js
+   git commit -m "Merge feature/personalize-greeting: resolve greet wording"
+   ```
+   If you need to back out: `git merge --abort` (only while a merge is in progress).
+
+3. **Unrelated histories**:
+   ```bash
+   git switch main
+   git merge experimental/orphan-rewrite
+   ```
+   Git prints `fatal: refusing to merge unrelated histories`. Optional follow-up (advanced): `git merge experimental/orphan-rewrite --allow-unrelated-histories` and then handle any file overlaps manually.
 
 ## Repo layout
 
